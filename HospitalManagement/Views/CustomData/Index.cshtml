@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Get Table Data</h2>
+@using (Html.BeginForm("GetData", "CustomData"))
+{   
+    <div class="form-group">
+        @Html.Label("Table Name")
+        @Html.TextBox("TableName")
+    </div>
+
+    <button type="submit" class="btn btn-primary">Get Details</button>
+    <br/>
+    <br />
+        @Html.Raw(Convert.ToString(ViewData["Result"]))       
+}
+

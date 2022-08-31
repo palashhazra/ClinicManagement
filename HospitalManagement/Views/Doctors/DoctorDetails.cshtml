@@ -1,0 +1,43 @@
+﻿@model List<HospitalManagement.Models.Doctor>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <h3>Doctor's List</h3>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Serial No.</th>
+                <th>Doctor Name</th>
+                <th>Department</th>
+                <th>Date Of Birth</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Count == 0)
+            {
+                <tr>
+                    <text>No Doctor available at this moment.</text>
+                </tr>
+            }
+            else
+            {
+
+                foreach (var doctor in Model)
+                {
+                    <tr>
+                        <td>@doctor.Id</td>
+                        <td>@doctor.Name</td>
+                        <td>@doctor.Department</td>
+                        <td>@doctor.DOB.Value.ToShortDateString()</td>
+                        <td>@Html.ActionLink("Edit", "Edit", "Doctors", new { @id = doctor.Id }, null)</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+

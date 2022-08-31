@@ -1,0 +1,47 @@
+﻿@model HospitalManagement.Models.Patient
+@{
+    ViewBag.Title = "New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Patient Form</h2>
+@using (Html.BeginForm("Create", "Patient"))
+{
+    @Html.ValidationSummary(true,"Please fix the following errors")
+    @Html.HiddenFor(m => m.PatientId)
+    <div class="form-group">            
+        @Html.LabelFor(m => m.PatientName)
+        @Html.TextBoxFor(m => m.PatientName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m=>m.PatientName)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Dieseases)
+        @Html.TextBoxFor(m => m.Dieseases, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m=>m.Dieseases)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.DateOfBirth)
+        @Html.EditorFor(m => m.DateOfBirth, "{0:dd-MM-yyyy}",  new { htmlAttributes = new { @class = "form-control datepicker" } })
+        @Html.ValidationMessageFor(m => m.DateOfBirth)
+    </div>
+    <div class="checkbox">
+        <label>
+            @Html.CheckBoxFor(m => m.IsActive) Is Patient Active?
+        </label>
+    </div>
+        
+    <button type="submit" class="btn btn-primary">Save</button>        
+}
+
+
+@section Scripts{
+<script>
+$(document).ready(function () {
+    var d = $("#DateOfBirth").val();
+    d = d.split(' ')[0];
+    $('#DateOfBirth').val(d);
+});
+</script>
+}
+
+

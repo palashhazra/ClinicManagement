@@ -1,0 +1,53 @@
+﻿@model HospitalManagement.Models.Doctor
+
+@{
+    ViewBag.Title = "DoctorForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Doctor's Form</h2>
+
+@using (Html.BeginForm("Create", "Doctors"))
+{
+    
+      
+        @Html.ValidationSummary(true,"Please fix the following errors")
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })            
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name)            
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Department, htmlAttributes: new { @class = "control-label" })            
+                @Html.EditorFor(model => model.Department, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Department)            
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.DOB, htmlAttributes: new { @class = "control-label" })           
+                @Html.EditorFor(model => model.DOB, "{0:dd-MM-yyyy}", new { htmlAttributes = new { @class = "form-control datepicker" }})
+                @Html.ValidationMessageFor(model => model.DOB)           
+        </div>
+        <div class="checkbox">
+            <label>
+                @Html.CheckBoxFor(model => model.IsActive) Is Patient Active?
+            </label>        
+        </div>
+        @Html.HiddenFor(m => m.Id)
+        @Html.AntiForgeryToken()
+        <input type="submit" value="Save" class="btn btn-primary" />     
+}
+
+<div>
+    @Html.ActionLink("Back to List", "DoctorDetails")
+</div>
+
+
+@section Scripts{
+<script>
+    $(document).ready(function () {       
+        var d = $("#DOB").val();
+        d = d.split(' ')[0];
+        $('#DOB').val(d);
+    });
+</script>           
+}

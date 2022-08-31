@@ -1,0 +1,58 @@
+﻿@model List<HospitalManagement.Models.Patient>
+@{
+    ViewBag.Title = "Patient";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="form-group">    
+    <h2>Patient List</h2>    
+</div>
+
+<table id="tblPatient" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Serial No.</th>
+            <th>Patient Name</th>
+            <th>Disease</th>
+            <th>Date Of Birth</th>
+           
+        </tr>
+    </thead>
+    <tbody>
+        
+    </tbody>
+</table>
+
+
+@section Scripts{
+<script>
+    $(document).ready(function () {
+        
+        var table = $("#tblPatient").DataTable({
+            ajax: {
+                url:"/api/patients",
+                dataSrc:""
+            },
+            columns: [
+                {
+                    data: "PatientId"
+                },
+                {
+                    data: "PatientName"
+            },
+            {
+                data: "Dieseases"               
+            },
+            {
+                data: "DateOfBirth",
+                render: function (data) {
+                    var date = new Date(data);
+                    var month = date.getMonth() + 1;
+                    return (month.toString().length > 1 ? month : "0" + month) + "/" + date.getDate() + "/" + date.getFullYear();
+                }
+            }
+            ]
+        });        
+    });
+</script>
+    }
