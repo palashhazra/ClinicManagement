@@ -306,9 +306,9 @@
     <Compile Include="ViewModels\DoctorViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\palash.PalashDB.dbo.mdf" />
-    <Content Include="App_Data\palash.PalashDB.dbo_log.ldf">
-      <DependentUpon>palash.PalashDB.dbo.mdf</DependentUpon>
+    <Content Include="App_Data\DefaultConnection.mdf" />
+    <Content Include="App_Data\DefaultConnection_log.ldf">
+      <DependentUpon>DefaultConnection.mdf</DependentUpon>
     </Content>
     <Content Include="Content\bootstrap-datetimepicker.css" />
     <Content Include="Content\bootstrap-datetimepicker.min.css" />
